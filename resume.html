@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sai Shashank - Resume | Computer Science Student</title>
+  
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* Premium Resume Page Styling overrides */
+    body.resume-page {
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+    }
+
+    /* Top Actions Navigation Bar */
+    .resume-actions-header {
+      width: 100%;
+      max-width: 850px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: rgba(17, 17, 27, 0.45);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      backdrop-filter: var(--blur-normal);
+      -webkit-backdrop-filter: var(--blur-normal);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+    }
+
+    /* A4 Visual Canvas Container */
+    .resume-paper {
+      width: 100%;
+      max-width: 850px;
+      background: rgba(10, 10, 20, 0.7);
+      backdrop-filter: var(--blur-heavy);
+      -webkit-backdrop-filter: var(--blur-heavy);
+      border: 1px solid var(--border-glass-active);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      padding: 50px;
+      box-sizing: border-box;
+      font-family: var(--font-body);
+      position: relative;
+      overflow: hidden;
+      z-index: 5;
+    }
+
+    /* Card Glow Gradient Corner */
+    .resume-paper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle at 100% 0%, rgba(129, 140, 248, 0.12) 0%, rgba(192, 132, 252, 0.05) 50%, transparent 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Header Profile section */
+    .resume-header-block {
+      border-bottom: 1px solid var(--border-glass-active);
+      padding-bottom: 30px;
+      margin-bottom: 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .resume-profile-title h1 {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .resume-profile-title h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .resume-profile-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .resume-contact-link {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition);
+    }
+
+    .resume-contact-link:hover {
+      color: var(--primary);
+    }
+
+    .resume-contact-link i {
+      color: var(--primary);
+    }
+
+    /* Resume Columns Grid */
+    .resume-grid-layout {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 40px;
+    }
+
+    .resume-column-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .resume-column-title i {
+      color: var(--primary);
+    }
+
+    /* Custom Vertical Timeline tracks */
+    .resume-timeline-track {
+      position: relative;
+      padding-left: 28px;
+      border-left: 2px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .resume-timeline-track::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -2px;
+      width: 2px;
+      height: 10px;
+      background: linear-gradient(to top, rgba(255,255,255,0.06), var(--primary));
+    }
+
+    .resume-timeline-node {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .resume-timeline-node::before {
+      content: '';
+      position: absolute;
+      left: -35px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid #0a0a14;
+      box-shadow: 0 0 10px var(--primary);
+      transition: var(--transition);
+    }
+
+    .resume-timeline-node:hover::before {
+      transform: scale(1.3);
+      background: var(--secondary);
+      box-shadow: 0 0 12px var(--secondary);
+    }
+
+    .resume-node-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .resume-node-org {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .resume-node-date {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .resume-node-role {
+      font-size: 0.95rem;
+      color: var(--secondary);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .resume-node-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .resume-node-desc li {
+      margin-bottom: 6px;
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .resume-node-desc li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--primary);
+    }
+
+    /* Skills Pill badges styling */
+    .resume-skills-block {
+      margin-bottom: 24px;
+    }
+
+    .resume-skills-block h4 {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+
+    .resume-badge-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .resume-skill-pill {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-glass);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .resume-skill-pill:hover {
+      background: var(--primary-glow);
+      border-color: var(--primary);
+      color: var(--text-primary);
+    }
+
+    /* Achievements block styles */
+    .resume-achievement-item {
+      margin-bottom: 18px;
+      padding: 14px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border-glass);
+      transition: var(--transition);
+    }
+
+    .resume-achievement-item:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: var(--border-glass-active);
+    }
+
+    .resume-achievement-item strong {
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .resume-achievement-item p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* --- High Contrast A4 Print overrides --- */
+    @media print {
+      body.resume-page {
+        background: #ffffff !important;
+        color: #111111 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+      }
+
+      .ambient-bg, .resume-actions-header {
+        display: none !important;
+      }
+
+      .resume-paper {
+        background: #ffffff !important;
+        color: #111111 !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        border-radius: 0 !important;
+        overflow: visible !important;
+      }
+
+      .resume-paper::before {
+        display: none !important;
+      }
+
+      .resume-header-block {
+        border-bottom: 2px solid #222222 !important;
+        padding-bottom: 20px !important;
+      }
+
+      .resume-profile-title h1 {
+        color: #000000 !important;
+      }
+
+      .resume-profile-title h2 {
+        color: #333333 !important;
+      }
+
+      .resume-contact-link {
+        color: #222222 !important;
+      }
+
+      .resume-contact-link i {
+        color: #000000 !important;
+      }
+
+      .resume-column-title {
+        color: #000000 !important;
+        border-bottom: 1px solid #444444 !important;
+        padding-bottom: 6px !important;
+      }
+
+      .resume-column-title i {
+        display: none !important;
+      }
+
+      .resume-timeline-track {
+        border-left: 2px solid #666666 !important;
+      }
+
+      .resume-timeline-node::before {
+        background: #000000 !important;
+        border: 3px solid #ffffff !important;
+        box-shadow: none !important;
+      }
+
+      .resume-node-org {
+        color: #000000 !important;
+      }
+
+      .resume-node-date {
+        color: #555555 !important;
+      }
+
+      .resume-node-role {
+        color: #222222 !important;
+      }
+
+      .resume-node-desc li {
+        color: #222222 !important;
+      }
+
+      .resume-node-desc li::before {
+        color: #000000 !important;
+      }
+
+      .resume-skill-pill {
+        background: #f3f4f6 !important;
+        border: 1px solid #d1d5db !important;
+        color: #1f2937 !important;
+      }
+
+      .resume-skills-block {
+        margin-bottom: 16px !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      
+      .resume-skills-block h4 {
+        font-size: 0.9rem !important;
+        font-weight: 700 !important;
+        color: #000000 !important;
+        margin-bottom: 4px !important;
+        display: inline !important;
+      }
+      
+      .resume-skills-block h4::after {
+        content: ": " !important;
+      }
+      
+      .resume-badge-wrap {
+        display: inline !important;
+      }
+      
+      .resume-skill-pill {
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        color: #111111 !important;
+        font-size: 0.9rem !important;
+        display: inline !important;
+      }
+      
+      .resume-skill-pill:not(:last-child)::after {
+        content: ", " !important;
+      }
+
+      .resume-achievement-item {
+        background: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .resume-achievement-item strong {
+        color: #000000 !important;
+      }
+
+      .resume-achievement-item p {
+        color: #374151 !important;
+      }
+
+      .resume-summary {
+        color: #222222 !important;
+        border-bottom: 2px solid #222222 !important;
+      }
+
+      .resume-timeline-node {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+    }
+
+    /* Screen responsiveness adjustments */
+    @media (max-width: 820px) {
+      .resume-paper {
+        padding: 30px;
+        border-radius: 0;
+      }
+      .resume-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .resume-header-block {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .resume-profile-contacts {
+        align-items: flex-start;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body class="resume-page">
+
+  <!-- Ambient Glowing Background Grid -->
+  <div class="ambient-bg">
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="ambient-glow-3"></div>
+  </div>
+
+  <!-- Header Controls Bar -->
+  <div class="resume-actions-header">
+    <a href="index.html" class="btn btn-secondary" id="btn-back-portfolio">
+      <i data-lucide="arrow-left"></i> Back to Portfolio
+    </a>
+    <button onclick="window.print()" class="btn btn-primary" id="btn-print-resume">
+      <i data-lucide="printer"></i> Print / Save PDF
+    </button>
+  </div>
+
+  <!-- Main CV Paper -->
+  <div class="resume-paper">
+    
+    <!-- Profile Info Header Block -->
+    <header class="resume-header-block">
+      <div class="resume-profile-title">
+        <h1><span class="gradient-text">Sai Shashank</span></h1>
+        <h2 class="gradient-text-teal">Computer Science Student & Software Developer</h2>
+      </div>
+      <div class="resume-profile-contacts">
+        <a href="mailto:kondanabionasaishashank@gmail.com" class="resume-contact-link">
+          kondanabionasaishashank@gmail.com <i data-lucide="mail" size="14"></i>
+        </a>
+        <a href="tel:+919398304791" class="resume-contact-link">
+          +91 9398304791 <i data-lucide="phone" size="14"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/sai-shashank-90028333b/" target="_blank" class="resume-contact-link">
+          linkedin.com/in/sai-shashank-90028333b <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-in"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/Shashank1978326" target="_blank" class="resume-contact-link">
+          github.com/Shashank1978326 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gh"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        </a>
+        <span class="resume-contact-link" style="color: var(--text-secondary); cursor: default;">
+          Kurnool, Andhra Pradesh, India <i data-lucide="map-pin" size="14"></i>
+        </span>
+      </div>
+    </header>
+
+    <!-- Professional Summary -->
+    <div class="resume-summary" style="margin-top: -15px; margin-bottom: 30px; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; border-bottom: 1px solid var(--border-glass-active); padding-bottom: 20px;">
+      <strong>Professional Summary:</strong> Detail-oriented Computer Science undergraduate at SRM University AP with a solid GPA (7.95) and experience building high-performance, full-stack applications and deploying machine learning models. Adept in C++, React, Node.js, and MongoDB, with a demonstrated ability to architect responsive interfaces, design optimized database schemas, and build real-time computer vision inference APIs.
+    </div>
+
+    <!-- Two-Column Page Structure -->
+    <div class="resume-grid-layout">
+      
+      <!-- Left Column (Main): Projects & Education -->
+      <div class="resume-main-col">
+        
+        <!-- Section: Education -->
+        <div class="resume-column-title" style="margin-top:0;">
+          <i data-lucide="graduation-cap"></i> Education
+        </div>
+        <div class="resume-timeline-track">
+          <div class="resume-timeline-node">
+            <div class="resume-node-header">
+              <span class="resume-node-org">SRM University AP</span>
+              <span class="resume-node-date">2024 - 2028</span>
+            </div>
+            <div class="resume-node-role">Bachelor of Science in Computer Science</div>
+            <ul class="resume-node-desc">
+              <li>Academic Standing: <strong>CGPA 7.95 / 10.0</strong></li>
+              <li>Core Focus Areas: Data Structures & Algorithms, Object-Oriented Programming, Database Management Systems, Systems Design.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section: Projects -->
+        <div class="resume-column-title" style="margin-top: 10px;">
+          <i data-lucide="code-2"></i> Academic & Personal Projects
+        </div>
+        <div class="resume-timeline-track">
+          
+          <!-- Project 1 -->
+          <div class="resume-timeline-node">
+            <div class="resume-node-header">
+              <span class="resume-node-org">AI Kitchen Assistant</span>
+              <span class="resume-node-date">React, Flask, Node.js, PyTorch, YOLOv8, OpenCV, MongoDB</span>
+            </div>
+            <div class="resume-node-role">Full-Stack & Machine Learning Developer</div>
+            <ul class="resume-node-desc">
+              <li>Trained custom YOLOv8 and PyTorch ResNet-18 classification models on an ingredient dataset using mixed-precision training (AMP) and data augmentations to maximize accuracy.</li>
+              <li>Engineered a high-throughput Flask inference API utilizing OpenCV to decode real-time image uploads and stream top-3 ingredient classification confidence scores back to the client.</li>
+              <li>Designed a fuzzy-search (Fuse.js) recipe matching engine with weighted ranking algorithms to sort suggestions based on available vs. missing ingredients.</li>
+            </ul>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="resume-timeline-node">
+            <div class="resume-node-header">
+              <span class="resume-node-org">MediAI Guardian</span>
+              <span class="resume-node-date">React.js, Node.js, Express.js, Gemini AI, MySQL</span>
+            </div>
+            <div class="resume-node-role">AI-Powered Medicine Scanner & Assistant</div>
+            <ul class="resume-node-desc">
+              <li>Designed a complete web platform that extracts text from medicine packaging labels using optical character recognition (OCR).</li>
+              <li>Integrated Google Gemini AI APIs to analyze labels and dynamically generate safety documentation, active ingredient explanations, and precaution warnings.</li>
+              <li>Developed a relational MySQL database to manage user profiles, safety search histories, and custom medication reminder schedules.</li>
+            </ul>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="resume-timeline-node">
+            <div class="resume-node-header">
+              <span class="resume-node-org">EcoWatt</span>
+              <span class="resume-node-date">HTML, CSS, JavaScript, Machine Learning</span>
+            </div>
+            <div class="resume-node-role">Energy Optimizer & Carbon Tracker (Hackathon Project)</div>
+            <ul class="resume-node-desc">
+              <li>Developed a sustainability dashboard during the AIESEC Global Goals Hackathon under team "Code for change."</li>
+              <li>Programmed a machine learning monthly forecasting model to analyze and predict domestic appliance power consumption and cost.</li>
+              <li>Created an interactive carbon offset calculator rendering real-time metrics for money saved and CO2 emissions avoided.</li>
+            </ul>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="resume-timeline-node">
+            <div class="resume-node-header">
+              <span class="resume-node-org">Pharmacy DBMS</span>
+              <span class="resume-node-date">SQL, MySQL, Relational Database Design</span>
+            </div>
+            <div class="resume-node-role">Database Inventory Management System</div>
+            <ul class="resume-node-desc">
+              <li>Modeled and implemented a robust relational database schema handling supplier information, inventory levels, and customer transaction logs.</li>
+              <li>Wrote optimized SQL queries and triggers to automate stock level alerts, log sales histories, and generate business reports.</li>
+            </ul>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="resume-timeline-node">
+            <div class="resume-node-header">
+              <span class="resume-node-org">Student Record System</span>
+              <span class="resume-node-date">C Programming, File I/O, Data Structures</span>
+            </div>
+            <div class="resume-node-role">Systems Administrator CLI Utility</div>
+            <ul class="resume-node-desc">
+              <li>Programmed a secure CLI administration utility in C featuring password encryption and role-based access levels.</li>
+              <li>Implemented custom data structures and binary file-handling mechanisms to perform robust search, create, update, and delete (CRUD) queries.</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right Column (Side): Skills & Achievements -->
+      <div class="resume-side-col">
+        
+        <!-- Section: Skills -->
+        <div class="resume-column-title">
+          <i data-lucide="cpu"></i> Skills Matrix
+        </div>
+        
+        <div class="resume-skills-block">
+          <h4>Languages</h4>
+          <div class="resume-badge-wrap">
+            <span class="resume-skill-pill">C</span>
+            <span class="resume-skill-pill">C++</span>
+            <span class="resume-skill-pill">Python</span>
+            <span class="resume-skill-pill">JavaScript</span>
+            <span class="resume-skill-pill">HTML</span>
+            <span class="resume-skill-pill">CSS</span>
+          </div>
+        </div>
+
+        <div class="resume-skills-block">
+          <h4>Libraries</h4>
+          <div class="resume-badge-wrap">
+            <span class="resume-skill-pill">React.js</span>
+            <span class="resume-skill-pill">Node.js</span>
+            <span class="resume-skill-pill">Express.js</span>
+            <span class="resume-skill-pill">Vite</span>
+            <span class="resume-skill-pill">Pandas</span>
+            <span class="resume-skill-pill">NumPy</span>
+          </div>
+        </div>
+
+        <div class="resume-skills-block">
+          <h4>Databases</h4>
+          <div class="resume-badge-wrap">
+            <span class="resume-skill-pill">SQL</span>
+            <span class="resume-skill-pill">MySQL</span>
+            <span class="resume-skill-pill">MongoDB</span>
+          </div>
+        </div>
+
+        <div class="resume-skills-block">
+          <h4>Tools</h4>
+          <div class="resume-badge-wrap">
+            <span class="resume-skill-pill">Git</span>
+            <span class="resume-skill-pill">GitHub</span>
+            <span class="resume-skill-pill">VS Code</span>
+            <span class="resume-skill-pill">Gemini AI</span>
+          </div>
+        </div>
+
+        <!-- Section: Achievements -->
+        <div class="resume-column-title" style="margin-top: 25px;">
+          <i data-lucide="award"></i> Certifications & Achievements
+        </div>
+        
+        <div class="resume-achievement-item" style="border-left: 2px solid var(--secondary);">
+          <strong>MongoDB Certified Associate Developer</strong>
+          <p>MongoDB, Inc. &bull; License: # MDB2be5zvyyqs &bull; Apr 2026</p>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Demonstrated expertise in document database modeling, indexing, and query optimization.</p>
+        </div>
+
+        <div class="resume-achievement-item" style="border-left: 2px solid var(--primary);">
+          <strong>TEXPO'26 Technical Competition</strong>
+          <p>INFINITUS'26 &bull; SRM University-AP &bull; Feb 2026</p>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Participated as a member of Team "Glitch Hunters" in the national-level technical exhibition and competition (TEXPO'26) during the INFINITUS Techno-Cultural Fest.</p>
+        </div>
+
+        <div class="resume-achievement-item" style="border-left: 2px solid var(--accent);">
+          <strong>Financial Education Certification</strong>
+          <p>National Centre for Financial Education &bull; License: 0p5XEr35pF &bull; Feb 2026</p>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Successfully completed NCFE course covering personal finance, budgeting, risk, and investments promoted by SEBI and RBI.</p>
+        </div>
+
+        <div class="resume-achievement-item">
+          <strong>Algorithmic Problem Solving</strong>
+          <p>LeetCode &bull; Active Practice</p>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Consistently solve complex data structures and algorithm challenges on LeetCode to improve optimization and logic skills.</p>
+        </div>
+
+        <div class="resume-achievement-item">
+          <strong>HackSRM Vibecraft</strong>
+          <p>SRM University-AP &bull; Competitor</p>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Participated in university-wide software development sprint and hackathon, prototyping dynamic app interfaces.</p>
+        </div>
+
+        <div class="resume-achievement-item">
+          <strong>Hackathons & Sprints</strong>
+          <p>Active competitor in college-level algorithmic coding rounds and collaborative sprints.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Lucide Script -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

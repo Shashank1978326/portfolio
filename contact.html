@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sai Shashank | Contact Me - Computer Science Student</title>
+  <meta name="description" content="Reach out to Sai Shashank. Recruiter contact center, copy email and phone number, or send a direct inquiry.">
+  
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Ambient Background Mesh Glows -->
+  <div class="ambient-bg">
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="ambient-glow-3"></div>
+  </div>
+
+  <!-- Sticky Glass Navbar Header -->
+  <header id="site-header" class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo" id="nav-logo">
+        <span class="logo-symbol">K</span>
+        <span class="logo-text">Kondanabiona Sai Shashank</span>
+      </a>
+      
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html" class="nav-link" id="link-home">Home</a></li>
+          <li><a href="about.html" class="nav-link" id="link-about">About</a></li>
+          <li><a href="skills.html" class="nav-link" id="link-skills">Skills</a></li>
+          <li><a href="projects.html" class="nav-link" id="link-projects">Projects</a></li>
+          <li><a href="achievements.html" class="nav-link" id="link-achievements">Achievements</a></li>
+          <li><a href="contact.html" class="nav-link active" id="link-contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+        <i data-lucide="menu" size="28"></i>
+      </button>
+    </div>
+  </header>
+
+  <main style="padding-top: 140px; padding-bottom: 60px;">
+    <!-- Contact Section -->
+    <section id="contact" style="padding: 0;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Reach Out to Me</span>
+          <h1 class="section-title">Contact & Inquiry Center</h1>
+          <p class="section-subtitle">Reach out for internship opportunities, project collaborations, or general developer inquiries.</p>
+        </div>
+
+        <div class="contact-grid">
+          
+          <!-- Left Column: Quick Contacts Info -->
+          <div class="contact-info-panel">
+            <div class="contact-card glass">
+              <h3 class="gradient-text" style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 8px;">Direct Info</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 12px;">Copy to clipboard or click to open default applications directly.</p>
+              
+              <!-- Email -->
+              <div class="contact-method">
+                <div class="contact-icon-box">
+                  <i data-lucide="mail"></i>
+                </div>
+                <div class="contact-details">
+                  <h4>Email</h4>
+                  <div class="contact-link-wrapper">
+                    <a href="mailto:kondanabionasaishashank@gmail.com" class="contact-value" id="val-email">
+                      kondanabionasaishashank@gmail.com
+                    </a>
+                    <button class="copy-btn" id="btn-copy-email" aria-label="Copy email">
+                      <i data-lucide="copy" size="16"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Phone -->
+              <div class="contact-method">
+                <div class="contact-icon-box">
+                  <i data-lucide="phone"></i>
+                </div>
+                <div class="contact-details">
+                  <h4>Phone</h4>
+                  <div class="contact-link-wrapper">
+                    <a href="tel:+919398304791" class="contact-value" id="val-phone">
+                      +91 9398304791
+                    </a>
+                    <button class="copy-btn" id="btn-copy-phone" aria-label="Copy phone number">
+                      <i data-lucide="copy" size="16"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Current Location -->
+              <div class="contact-method">
+                <div class="contact-icon-box">
+                  <i data-lucide="map-pin"></i>
+                </div>
+                <div class="contact-details">
+                  <h4>Current Location</h4>
+                  <span class="contact-value">SRM University AP, Andhra Pradesh</span>
+                </div>
+              </div>
+              
+              <!-- Hometown -->
+              <div class="contact-method">
+                <div class="contact-icon-box">
+                  <i data-lucide="home"></i>
+                </div>
+                <div class="contact-details">
+                  <h4>Hometown</h4>
+                  <span class="contact-value">Kurnool, Andhra Pradesh, India</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Recruiter Fast-track Card -->
+            <div class="contact-card glass" style="padding: 24px; border-left: 3px solid var(--secondary);">
+              <h4 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--secondary); margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                <i data-lucide="zap" size="18"></i> Fast-Track Hiring
+              </h4>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">
+                Looking for a 3rd-year CS intern who knows C++, React, Node, and MongoDB? I am ready to join your team for summer or semester internships. Let's build something great.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Form -->
+          <div class="contact-form-card glass">
+            <h3 class="gradient-text" style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 24px;">Send a Message</h3>
+            
+            <form class="contact-form" id="contact-form">
+              <div class="form-group">
+                <label for="form-name" class="form-label">Full Name</label>
+                <input type="text" id="form-name" class="form-input" placeholder="Your name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="form-email" class="form-label">Email Address</label>
+                <input type="email" id="form-email" class="form-input" placeholder="name@company.com" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="form-subject" class="form-label">Subject</label>
+                <input type="text" id="form-subject" class="form-input" placeholder="Job Opportunity / Internship / Project" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="form-message" class="form-label">Message</label>
+                <textarea id="form-message" class="form-input" placeholder="Write your message here..." required></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary" id="btn-submit-message" style="margin-top: 10px; border: none; width: 100%;">
+                Send Message <i data-lucide="send"></i>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-copyright">
+        &copy; 2026 Sai Shashank. All rights reserved. SRM University AP.
+      </div>
+      <div class="footer-meta">
+        <a href="https://github.com/Shashank1978326" target="_blank" class="icon-link" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gh"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/sai-shashank-90028333b/" target="_blank" class="icon-link" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-in"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lucide Script -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Main Script -->
+  <script src="script.js"></script>
+</body>
+</html>
